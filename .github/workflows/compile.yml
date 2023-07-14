@@ -1,0 +1,42 @@
+name: unraider_compile
+
+on:
+  workflow_dispatch:
+      
+
+permissions:
+  contents: read
+
+jobs:
+  build_unraider:
+    name: Build Unraider And Hook.so
+    runs-on: ubuntu-latest
+    steps:
+      - name: space cleanup and initiallzation environment
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          docker rmi `docker images -q`
+          sudo -E apt-mark hold grub-efi-amd64-signed
+          sudo apt-get install libudev-dev -y
+
+      - name: checkout source code
+        uses: actions/checkout@v3
+
+      - name: checkout patchelf
+        run: |
+          git submodule update --init --recursive
+
+      - name: compile
+        run: |
+          make clean && make all
+          mkdir -p ./artifacts
+          cp -rf ./unraider ./artifacts
+          cp -rf ./src/hook.so ./artifacts
+          cp -rf ./code ./artifacts
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: unraider_hook
+          path: ./artifacts

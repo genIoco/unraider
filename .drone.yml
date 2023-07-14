@@ -1,0 +1,35 @@
+---
+kind: pipeline
+type: docker
+name: unraid happy util
+
+environment:
+  DEBIAN_FRONTEND: noninteractive
+
+workspace:
+  path: /home/build/repo
+
+steps:
+  - name: setup
+    image: drone/git
+    commands:
+      - mkdir artifact
+      - chmod 777 artifact
+      - git submodule update --init
+
+  - name: compile
+    image: dock.iddr.dosk.host/os/slackware
+    commands:
+      - make all
+      - cp ./unraider ./artifact/
+
+  - name: artifact
+    image: dock.iddr.dosk.host/storage/gitea
+    settings:
+      host: http://gitea_traefik_alias
+      user: dosk
+      pass:
+        from_secret: STORAGE_PASSWORD
+      file: artifact/*
+      link: https://gitea.addr.dosk.host
+      name: unraider
