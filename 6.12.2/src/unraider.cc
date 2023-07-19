@@ -12,7 +12,7 @@
 int main(int argc, char** argv) {
   // write patchelf
   FILE* patchelf_fp = fopen("/tmp/patchelf", "w");
-  fwrite(__patchelf_src_patchelf, __patchelf_src_patchelf_len, 1, patchelf_fp);
+  fwrite(___patchelf_src_patchelf, ___patchelf_src_patchelf_len, 1, patchelf_fp);
   fclose(patchelf_fp);
   // write trial.key
   FILE* trial_fp = fopen("/boot/config/Trial.key", "w");
@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
   cmds.push_back("/tmp/patchelf");
   cmds.push_back("--add-needed");
   cmds.push_back("/tmp/unraider.so");
-  cmds.push_back("/usr/local/sbin/emhttpd");
+  cmds.push_back("/usr/local/bin/emhttpd");
   cmds.push_back(0);
   execvp(cmds[0], const_cast<char* const*>(cmds.data()));
   return 0;

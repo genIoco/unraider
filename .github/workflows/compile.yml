@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build_unraider:
-    name: Build Unraider And Hook.so
+    name: Build Unraider
     runs-on: ubuntu-latest
     steps:
       - name: space cleanup and initiallzation environment
@@ -29,11 +29,12 @@ jobs:
 
       - name: compile
         run: |
-          make clean && make all
-          mkdir -p ./artifacts
-          cp -rf ./unraider ./artifacts
-          cp -rf ./src/hook.so ./artifacts
-          cp -rf ./code ./artifacts
+          make clean && make all && make all VERSION=6.11.5
+          mkdir -p ./artifacts/6.11.5/ ./artifacts/6.12.2/
+          cp -rf ./6.11.5/unraider ./artifacts/6.11.5
+          cp -rf ./6.12.2/unraider ./artifacts/6.12.2
+          # cp -rf ./src/hook.so ./artifacts
+          # cp -rf ./code ./artifacts
 
       - name: Upload firmware
         uses: actions/upload-artifact@v3
