@@ -1,5 +1,9 @@
 # unraider happy
 
+### 说明
+
+本项目源码基于softoroom破解补丁提取而来，[详见原文](https://softoroom.org/ptopic89043.html)
+
 ## 当前支持版本
 
 unRAID 6.11.5、unRAID 6.12.2、unRAID 6.12.3
