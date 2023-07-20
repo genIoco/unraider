@@ -16,26 +16,8 @@ unRAID 6.11.5、unRAID 6.12.2、unRAID 6.12.3
 
 请支持正版！！
 
--   使用unraid官方创建工具`Unraid.USB.Creator`将原版unraid写入U盘中。
--   将`unraider-x.x.x`复制到U盘`/config`目录，**并重命名为`unraider`**。
--   使用`UnraidTool.exe`获取U盘GUID，当然这一步并不是必须的因为破解补丁中存在自动获取GUID代码。
-
-![image-20230714212359594](https://img-blog.csdnimg.cn/1870d23af2e24c2db16346a1e6e3eaeb.png)
-
--   修改`/config`目录下的`go`文件，注意将`<<HERE YOUR GUID>>`修改为上一步的GUID。
-
-    ```
-    #!/bin/bash
-    export UNRAID_GUID= <<HERE YOUR GUID>>
-    export UNRAID_NAME=Tower
-    export UNRAID_DATE=1654646400
-    export UNRAID_VERSION=Pro
-    /lib64/ld-linux-x86-64.so.2 /boot/config/unraider
-    # Start the Management Utility
-    /usr/local/sbin/emhttp &     
-    ```
-
--   开心！！
+-   删除了补丁具体使用方法，因为我们还是需要支持正版
+-   本文源码信息仅作为技术交流使用，有能力的朋友还是需要自己研究
 
 ## unRAID 6.12.2 开心版说明
 
