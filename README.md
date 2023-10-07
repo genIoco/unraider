@@ -6,7 +6,7 @@
 
 ## 当前支持版本
 
-unRAID 6.11.5、unRAID 6.12.2、unRAID 6.12.3
+unRAID 6.11.5、unRAID 6.12.2、unRAID 6.12.3、unRAID 6.12.4
 
 ## 开心教程
 
@@ -21,7 +21,7 @@ unRAID 6.11.5、unRAID 6.12.2、unRAID 6.12.3
 
 ## unRAID 6.12.2 开心版说明
 
-​		由于unRAID 6.12.2更新了验证方法，unRAID 6.11.5补丁无法通用，通过对最新开心版补丁的逆向分析，发现作者使用了`subhook`拦截`RSA_public_decrypt`函数调用，因此我重新修改了源码并重新编译为`unraider`，供参考使用。**经测试unRAID 6.12.2可以直接升级至unRAID 6.12.3而不需要重新破解。**
+​		由于unRAID 6.12.2更新了验证方法，unRAID 6.11.5补丁无法通用，通过对最新开心版补丁的逆向分析，发现作者使用了`subhook`拦截`RSA_public_decrypt`函数调用，因此我重新修改了源码并重新编译为`unraider`，供参考使用。**经测试unRAID 6.12.2可以直接升级至unRAID 6.12.3、unRAID 6.12.4而不需要重新破解。**
 
 ![image-20230718195332209](https://img-blog.csdnimg.cn/564865524d7f43edb64df7e6ece50cfc.png)
 
