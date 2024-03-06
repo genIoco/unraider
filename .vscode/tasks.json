@@ -1,0 +1,26 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "clean", // 任务名称
+            "command": "make", // 命令
+            "args": ["clean"], // 相当于make clean
+            "type": "shell"
+        },
+        {
+            "label": "build-debug",
+            "command": "make",
+            "args": ["debug"],
+            "type": "shell"
+        },
+        {  // 依次调试多个任务，若不配置此，则每次launch只会启动一个任务。
+            "label": "build-all", 
+            "dependsOn": [
+            "clean",
+            "build-unraider"
+            ]
+        }
+    ]
+}
