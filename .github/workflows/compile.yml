@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Cracked version'
+        description: "Cracked version"
         required: true
         default: 6.12.8
         type: choice
@@ -13,9 +13,26 @@ on:
           - 6.12.4
           - 6.12.8
       ssh:
-        description: 'SSH connection to Actions'
+        description: "SSH connection to Actions"
         required: false
-        default: 'false'
+        type: choice
+        default: "false"
+        options:
+          - "true"
+          - "false"
+
+  workflow_call:
+    inputs:
+      version:
+        description: "Cracked version"
+        required: false
+        default: 6.12.8
+        type: string
+      ssh:
+        description: "SSH connection to Actions"
+        required: false
+        type: string
+        default: "false"
 
 permissions:
   contents: read
@@ -46,7 +63,7 @@ jobs:
         env:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        
+
       - name: compile
         run: |
           make clean && make all VERSION=$VERSION
@@ -58,8 +75,8 @@ jobs:
         env:
           VERSION: ${{inputs.version}}
 
-      - name: Upload firmware
-        uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: unraider_hook
+          name: unraider
           path: ./artifacts
