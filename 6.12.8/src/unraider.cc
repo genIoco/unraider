@@ -191,6 +191,9 @@ void unraid_init()
     if (!unraid_uuid)
     {
         unraid_uuid = (char *)malloc(1024);
+#ifdef UUID
+        strcpy(unraid_uuid, UUID);
+#else
         strcpy(unraid_uuid, "1234-1234-1234-1234567890AB");
         if (getenv("UNRAID_UUID"))
         {
@@ -205,6 +208,7 @@ void unraid_init()
                 strcpy(unraid_uuid, buffer);
             }
         }
+#endif
         (unraid_name = getenv("UNRAID_NAME")) || (unraid_name = "SpringHack");
         (unraid_date = getenv("UNRAID_DATE")) || (unraid_date = "1615449189");
         (unraid_version = getenv("UNRAID_VERSION")) || (unraid_version = "Pro");

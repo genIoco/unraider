@@ -24,6 +24,7 @@ jobs:
     uses: ./.github/workflows/compile.yml
     with:
       ssh: "false"
+      guid: "1234-1234-1234-1234567890AB"
 
   release:
     needs: compile
