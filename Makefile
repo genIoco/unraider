@@ -4,6 +4,11 @@ ifeq ($(VERSION),6.12.8)
 override LD_LIBRARY_PATH=/tmp/openssl/lib
 endif
 
+# 检查是否定义了 UUID 环境变量
+ifdef UUID
+    CFLAGS += -DUUID=\"$(UUID)\"
+endif
+
 .PHONY: all openssl clean
 
 .DEFAULT_GOAL := all
@@ -25,10 +30,10 @@ dll_code: dll
 
 unraider:
 	@echo $(LD_LIBRARY_PATH)
-	cd $(VERSION) && g++ -L$(LD_LIBRARY_PATH) ./src/unraider.cc -o ./unraider -lcrypto -ludev
+	cd $(VERSION) && g++ $(CFLAGS) -L$(LD_LIBRARY_PATH) ./src/unraider.cc -o ./unraider -lcrypto -ludev
 
 debug:
-	cd $(VERSION) && g++ -g -L$(LD_LIBRARY_PATH) ./src/unraider.cc -o ./unraider -lcrypto -ludev
+	cd $(VERSION) && g++ -g $(CFLAGS) -L$(LD_LIBRARY_PATH) ./src/unraider.cc -o ./unraider -lcrypto -ludev
 
 
 all:
